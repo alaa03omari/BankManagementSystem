@@ -46,6 +46,7 @@ public class BankAccount {
 
     @Override
     public String toString() {
-        return String.format("%s - %s | Balance: %.2f$", accountNumber, ownerName, balance);
+        return "Account → " + accountNumber + " | Owner: " + ownerName + " | Balance: " + balance + "$";
     }
+
 }
