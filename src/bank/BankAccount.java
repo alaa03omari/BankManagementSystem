@@ -1,6 +1,10 @@
 package bank;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class BankAccount {
+    private final List<Transaction> transactions = new ArrayList<>();
     private String accountNumber;
     private String ownerName;
     private double balance;
@@ -17,6 +21,7 @@ public class BankAccount {
             return;
         }
         balance += amount;
+        transactions.add(new Transaction("Deposit", amount));
         System.out.println("Deposit successful.");
     }
 
@@ -30,18 +35,24 @@ public class BankAccount {
             return false;
         }
         balance -= amount;
+        transactions.add(new Transaction("Withdraw", amount));
         return true;
     }
 
     public String getAccountNumber() {
         return accountNumber;
     }
+
     public String getOwnerName() {
         return ownerName;
     }
 
     public double getBalance() {
         return balance;
+    }
+
+    public List<Transaction> getTransactions() {
+        return transactions;
     }
 
     @Override
