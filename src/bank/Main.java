@@ -16,6 +16,7 @@ public class Main {
                 case 3 -> withdraw();
                 case 4 -> viewAllAccounts();
                 case 5 -> exitProgram();
+                case 6 -> viewTransactions();
                 default -> System.out.println("Invalid option.");
             }
         }
@@ -28,6 +29,7 @@ public class Main {
         System.out.println("3. Withdraw");
         System.out.println("4. View All Accounts");
         System.out.println("5. Exit");
+        System.out.println("6. View Transaction History");
     }
 
     private static void createAccount() {
@@ -74,8 +76,27 @@ public class Main {
         bank.getAccounts().forEach(System.out::println);
     }
 
+    private static void viewTransactions() {
+        String accNum = InputHelper.readString("Enter account number: ");
+        BankAccount acc = bank.findAccount(accNum);
+
+        if (acc == null) {
+            System.out.println("Account not found!");
+            return;
+        }
+
+        if (acc.getTransactions().isEmpty()) {
+            System.out.println("No transactions yet.");
+            return;
+        }
+
+        System.out.println("\n=== Transaction History ===");
+        acc.getTransactions().forEach(System.out::println);
+    }
+
     private static void exitProgram() {
         System.out.println("\nThank you for using the system. Goodbye!");
         System.exit(0);
     }
 }
+
